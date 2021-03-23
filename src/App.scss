@@ -83,7 +83,6 @@ body {
       }
     }
   }
-  // Tablet
   @media screen and (min-width: 992px) {
     .app {
       display: flex;
@@ -92,15 +91,31 @@ body {
         height: 100vh;
         width: 37vw;
         max-width: 408px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         .contact-bar {
-          position: absolute;
-          bottom: 2rem;
+          margin: 2rem 0;
+        }
+        .styling {
+          flex: 1 1;
+          max-height: 255px;
+          align-self: flex-start;
+          border-left: 1px solid $black;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          video {
+            width: 31vw;
+            padding-left: 1rem;
+          }
         }
       }
       .projects {
         position: absolute;
         right: 0;
         max-width: 508px;
+        margin-top: 1.5rem;
       }
       article {
         &:hover {
@@ -110,6 +125,17 @@ body {
           transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
           transition: all 0.2s ease-in-out;
         }
+      }
+    }
+  }
+  // Tablet
+  @media screen and (min-width: 1280px) {
+    .app {
+      .info {
+        padding-left: 10vw;
+      }
+      .projects {
+        right: 10vw;
       }
     }
   }

@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import './App.scss';
 function App() {
   let headshot = "foto.jpg"
@@ -7,7 +9,7 @@ function App() {
     },
     es: {
       introduction: 'Hola! Soy Efraín Gutiérrez',
-      cover: 'Soy un Front End Engineer con una pasión por el diseño. Actualmente trabajo como consultor para clientes americanos. Mayoritariamente hago front-end development pero tengo conocimientos de backend, devops y demas; soy fan de React y CSS. Me gusta trabajar con experiencias web que impacten a los usuarios.',
+      cover: 'Soy un Front End Engineer con una pasión por el diseño. Actualmente trabajo como consultor para clientes americanos. Mayoritariamente hago front-end development pero también tengo conocimientos de backend, devops y demás; soy fan de React y CSS. Me gusta trabajar con experiencias web que impacten a los usuarios.',
       cover_cta: 'contactame!',
       cv_cta: 'Revisa mi CV',
       or: 'o ',
@@ -16,7 +18,9 @@ function App() {
         language: 'Javascript',
         title: 'Plastic Lover',
         description: 'Sitio promocional para lanzamiento de proyecto musical. Animaciones con JS y CSS',
-        link: 'http://www.plasticlover.com.mx/'
+        // link: 'http://www.plasticlover.com.mx/'
+        link: 'https://test-plastic-ep.herokuapp.com/',
+        video: '/videos/test.webm'
       }, {
         language: 'React',
         title: '8x8 Rebranding FE',
@@ -30,13 +34,24 @@ function App() {
       }, {
         language: 'Javascript',
         title: 'SLNA Blog',
-        description: 'Blog hecho para medio local',
-        link: ''
+        description: 'Blog hecho para medio local, elaborado con KeystoneJS',
+        link: 'https://blog-slna.herokuapp.com/blog'
       }
       ]
     }
   }
   const selectedInfo = info['es']
+  const [video, setVideo] = useState('');
+
+  const selectVideo = (url) => {
+    console.log('nuevo', url);
+    setVideo(url)
+  }
+
+  const removeVideo = () => {
+    console.log('adioss');
+    setVideo('')
+  }
   return (
     <div className="app">
       <div className="info items-center padding-sides">
@@ -50,6 +65,11 @@ function App() {
             <a href="https://docs.google.com/document/d/1TEFLnq6AzpEBqfP-RRchc1g1e1DEd8ydZAnwpfqwsUc/edit?usp=sharing" target="_blank" className="mail"> {selectedInfo.cv_cta}</a> {selectedInfo.or}
             <a href="mailto:gtz.efrain@gmail.com" className="mail"> {selectedInfo.cover_cta}</a>
           </p>
+        </div>
+        <div className="styling">
+          {video &&
+            <video src={video} autoPlay></video>
+          }
         </div>
         <div className="contact-bar flex items-center">
           <img src={headshot} className="headshot" alt="Efrain Gutierrez Headshot" />
@@ -77,7 +97,7 @@ function App() {
         <h4 className="header">{selectedInfo.projects_title}</h4>
         {selectedInfo.projects.map((project) => (
           <a href={project.link} target="_blank">
-            <article className="project transition">
+            <article className="project transition" onMouseEnter={() => selectVideo(project.video)} onMouseLeave={() => removeVideo()}>
               <h5 className="language">{project.language}</h5>
               <h3 className="title">{project.title}</h3>
               <p className="description">{project.description}</p>
