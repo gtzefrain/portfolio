@@ -58,6 +58,20 @@ body {
     }
   }
 
+  .video-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: opacity 400ms ease 0ms;
+  }
+  .tiny {
+    filter: blur(20px);
+    transform: scale(1.1);
+    transition: visibility 0ms ease 400ms;
+  }
+
   .projects {
     .header {
       margin-bottom: 0;
@@ -99,15 +113,15 @@ body {
         }
         .styling {
           flex: 1 1;
-          max-height: 255px;
           align-self: flex-start;
           border-left: 1px solid $black;
           width: 100%;
           display: flex;
           align-items: center;
           video {
-            width: 31vw;
+            width: 29vw;
             padding-left: 1rem;
+            max-width: 350px;
           }
         }
       }

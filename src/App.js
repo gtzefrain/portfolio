@@ -20,36 +20,41 @@ function App() {
         description: 'Sitio promocional para lanzamiento de proyecto musical. Animaciones con JS y CSS',
         // link: 'http://www.plasticlover.com.mx/'
         link: 'https://test-plastic-ep.herokuapp.com/',
-        video: '/videos/test.webm'
+        video: '/videos/plastic_video.mp4'
       }, {
         language: 'React',
         title: '8x8 Rebranding FE',
         description: 'Colaborador en la implementacion de diseño del rebranding del sitio de ventas de 8x8',
-        link: 'https://8x8.com/'
+        link: 'https://8x8.com/',
+        video: '/videos/8x8.mp4'
       }, {
         language: 'Javascript',
         title: 'Dynamic Theme',
         description: 'Prueba de Concepto para cambio dinamico de temas usando Angular Material',
-        link: 'https://material-theming.herokuapp.com/'
+        link: 'https://material-theming.herokuapp.com/',
+        video: '/videos/theming.mp4'
       }, {
         language: 'Javascript',
         title: 'SLNA Blog',
         description: 'Blog hecho para medio local, elaborado con KeystoneJS',
-        link: 'https://blog-slna.herokuapp.com/blog'
+        link: 'https://blog-slna.herokuapp.com/blog',
+        video: '/videos/slna.mp4'
       }
       ]
     }
   }
   const selectedInfo = info['es']
   const [video, setVideo] = useState('');
+  const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
+  const onLoadedData = () => {
+    setIsVideoLoaded(true);
+  };
 
   const selectVideo = (url) => {
-    console.log('nuevo', url);
     setVideo(url)
   }
 
   const removeVideo = () => {
-    console.log('adioss');
     setVideo('')
   }
   return (
@@ -68,7 +73,23 @@ function App() {
         </div>
         <div className="styling">
           {video &&
-            <video src={video} autoPlay></video>
+            <div className="video-container">
+              <img
+                src={video}
+                className="video-thumb tiny"
+                alt="thumb"
+                style={{ opacity: isVideoLoaded ? 0 : 1 }}
+              />
+              <video
+                autoPlay
+                playsInline
+                muted
+                loop
+                src={video}
+                onLoadedData={onLoadedData}
+                style={{ opacity: isVideoLoaded ? 1 : 0 }}
+              />
+            </div>
           }
         </div>
         <div className="contact-bar flex items-center">
