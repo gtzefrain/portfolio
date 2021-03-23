@@ -25,14 +25,14 @@ body {
     margin: 2rem 0;
     .name {
       margin-top: 0.5rem;
-      margin-bottom: 0;
+      margin-bottom: 0.5rem;
       color: $black;
       font-size: 2rem;
       font-family: "Montserrat", sans-serif;
     }
     .cover {
       color: $black;
-      margin-top: 1.5rem;
+      margin-top: 0.5rem;
       margin-bottom: 0;
       font-family: "Raleway", sans-serif;
       line-height: 1.5;
@@ -56,20 +56,6 @@ body {
         }
       }
     }
-  }
-
-  .video-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    transition: opacity 400ms ease 0ms;
-  }
-  .tiny {
-    filter: blur(20px);
-    transform: scale(1.1);
-    transition: visibility 0ms ease 400ms;
   }
 
   .projects {
@@ -97,6 +83,19 @@ body {
       }
     }
   }
+  .lang-switcher {
+    display: flex;
+    width: 50px;
+    .lang {
+      width: 50%;
+      border: 1px solid black;
+      text-align: center;
+      &.active {
+        background-color: $black;
+        color: white;
+      }
+    }
+  }
   @media screen and (min-width: 992px) {
     .app {
       display: flex;
@@ -118,6 +117,18 @@ body {
           width: 100%;
           display: flex;
           align-items: center;
+          .video-thumb {
+            width: 29vw;
+            padding-left: 1rem;
+            max-width: 350px;
+            transition: opacity 400ms ease 0ms;
+            position: absolute;
+          }
+          .tiny {
+            filter: blur(20px);
+            transform: scale(1.1);
+            transition: visibility 0ms ease 400ms;
+          }
           video {
             width: 29vw;
             padding-left: 1rem;

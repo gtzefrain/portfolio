@@ -1,13 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import './App.scss';
 function App() {
   let headshot = "foto.jpg"
+  let languages = ['EN', 'ES']
   let info = {
-    en: {
-
+    EN: {
+      introduction: "Hello! I'm Efraín Gutiérrez",
+      cover: "I'm a Front End Engineer with a passion for design. I currently work in consulting for American clients. I mostly work on front end but I also got knowledge on backend, devops, etc; I love React and CSS. I like to work on web experiences that impact the user. ",
+      cover_cta: 'contact me!',
+      cv_cta: 'Check my CV!',
+      or: 'or ',
+      projects_title: 'Projects',
+      projects: [{
+        language: 'Javascript',
+        title: 'Plastic Lover',
+        description: 'Promotional site to promote music releases. Animations done with JS y CSS.',
+        // link: 'http://www.plasticlover.com.mx/'
+        link: 'https://test-plastic-ep.herokuapp.com/',
+        video: '/videos/plastic_video.mp4',
+        thumb: '/thumbnails/plastic.png'
+      }, {
+        language: 'React',
+        title: '8x8 Rebranding FE',
+        description: 'Colaborator in the implementation of the rebranding of the sales site for 8x8.',
+        link: 'https://8x8.com/',
+        video: '/videos/8x8.mp4',
+        thumb: '/thumbnails/8x8.png'
+      }, {
+        language: 'Javascript',
+        title: 'Dynamic Theme',
+        description: 'Proof of Concept for dynamic theming using Angular Material',
+        link: 'https://material-theming.herokuapp.com/',
+        video: '/videos/theming.mp4',
+        thumb: '/thumbnails/theming.png'
+      }, {
+        language: 'Javascript',
+        title: 'SLNA Blog',
+        description: 'Blog for a local media site, done with KeystoneJS and MongoDB',
+        link: 'https://blog-slna.herokuapp.com/blog',
+        video: '/videos/slna.mp4',
+        thumb: '/thumbnails/slna.png'
+      }
+      ]
     },
-    es: {
+    ES: {
       introduction: 'Hola! Soy Efraín Gutiérrez',
       cover: 'Soy un Front End Engineer con una pasión por el diseño. Actualmente trabajo como consultor para clientes americanos. Mayoritariamente hago front-end development pero también tengo conocimientos de backend, devops y demás; soy fan de React y CSS. Me gusta trabajar con experiencias web que impacten a los usuarios.',
       cover_cta: 'contactame!',
@@ -20,42 +57,55 @@ function App() {
         description: 'Sitio promocional para lanzamiento de proyecto musical. Animaciones con JS y CSS',
         // link: 'http://www.plasticlover.com.mx/'
         link: 'https://test-plastic-ep.herokuapp.com/',
-        video: '/videos/plastic_video.mp4'
+        video: '/videos/plastic_video.mp4',
+        thumb: '/thumbnails/plastic.png'
       }, {
         language: 'React',
         title: '8x8 Rebranding FE',
         description: 'Colaborador en la implementacion de diseño del rebranding del sitio de ventas de 8x8',
         link: 'https://8x8.com/',
-        video: '/videos/8x8.mp4'
+        video: '/videos/8x8.mp4',
+        thumb: '/thumbnails/8x8.png'
       }, {
         language: 'Javascript',
         title: 'Dynamic Theme',
         description: 'Prueba de Concepto para cambio dinamico de temas usando Angular Material',
         link: 'https://material-theming.herokuapp.com/',
-        video: '/videos/theming.mp4'
+        video: '/videos/theming.mp4',
+        thumb: '/thumbnails/theming.png'
       }, {
         language: 'Javascript',
         title: 'SLNA Blog',
         description: 'Blog hecho para medio local, elaborado con KeystoneJS',
         link: 'https://blog-slna.herokuapp.com/blog',
-        video: '/videos/slna.mp4'
+        video: '/videos/slna.mp4',
+        thumb: '/thumbnails/slna.png'
       }
       ]
     }
   }
-  const selectedInfo = info['es']
   const [video, setVideo] = useState('');
+  const [thumb, setThumb] = useState('');
+  const [language, setLanguage] = useState('EN');
   const [isVideoLoaded, setIsVideoLoaded] = React.useState(false);
+  const { height, width } = useWindowDimensions();
+
+  const selectedInfo = info[language]
   const onLoadedData = () => {
     setIsVideoLoaded(true);
   };
 
-  const selectVideo = (url) => {
-    setVideo(url)
+  const selectVideo = (videoURL, thumbURL) => {
+    if (width > 992) {
+      setVideo(videoURL)
+      setThumb(thumbURL)
+    }
   }
 
   const removeVideo = () => {
-    setVideo('')
+    if (width > 992) {
+      setVideo('')
+    }
   }
   return (
     <div className="app">
@@ -64,6 +114,11 @@ function App() {
           <h3 className="name">
             {selectedInfo.introduction}
           </h3>
+          <div className="lang-switcher">
+            {languages.map((lang) => (
+              <div className={`lang ${language === lang ? "active" : ""}`} onClick={() => setLanguage(lang)}>{lang}</div>
+            ))}
+          </div>
           <p className="cover">
             {selectedInfo.cover}
             <br />
@@ -75,7 +130,7 @@ function App() {
           {video &&
             <div className="video-container">
               <img
-                src={video}
+                src={thumb}
                 className="video-thumb tiny"
                 alt="thumb"
                 style={{ opacity: isVideoLoaded ? 0 : 1 }}
@@ -118,7 +173,7 @@ function App() {
         <h4 className="header">{selectedInfo.projects_title}</h4>
         {selectedInfo.projects.map((project) => (
           <a href={project.link} target="_blank">
-            <article className="project transition" onMouseEnter={() => selectVideo(project.video)} onMouseLeave={() => removeVideo()}>
+            <article className="project transition" onMouseEnter={() => selectVideo(project.video, project.thumb)} onMouseLeave={() => removeVideo()}>
               <h5 className="language">{project.language}</h5>
               <h3 className="title">{project.title}</h3>
               <p className="description">{project.description}</p>
@@ -128,6 +183,29 @@ function App() {
       </div>
     </div >
   );
+}
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+export function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
 }
 
 export default App;
