@@ -15,7 +15,7 @@ function App() {
       projects: [{
         language: 'Javascript',
         title: 'Plastic Lover',
-        description: 'Promotional site to promote music releases. Animations done with JS y CSS.',
+        description: 'Promotional site for music release. Animations done with JS y CSS.',
         // link: 'http://www.plasticlover.com.mx/'
         link: 'https://test-plastic-ep.herokuapp.com/',
         video: '/videos/plastic_video.mp4',
@@ -30,14 +30,14 @@ function App() {
       }, {
         language: 'Javascript',
         title: 'Dynamic Theme',
-        description: 'Proof of Concept for dynamic theming using Angular Material',
+        description: 'Proof of Concept, dynamic theming using Angular Material',
         link: 'https://material-theming.herokuapp.com/',
         video: '/videos/theming.mp4',
         thumb: '/thumbnails/theming.png'
       }, {
         language: 'Javascript',
         title: 'SLNA Blog',
-        description: 'Blog for a local media site, done with KeystoneJS and MongoDB',
+        description: 'Blog for a local media outlet, built with KeystoneJS and MongoDB',
         link: 'https://blog-slna.herokuapp.com/blog',
         video: '/videos/slna.mp4',
         thumb: '/thumbnails/slna.png'
@@ -69,7 +69,7 @@ function App() {
       }, {
         language: 'Javascript',
         title: 'Dynamic Theme',
-        description: 'Prueba de Concepto para cambio dinámico de temas usando Angular Material',
+        description: 'Prueba de Concepto, cambio dinámico de temas usando Angular Material',
         link: 'https://material-theming.herokuapp.com/',
         video: '/videos/theming.mp4',
         thumb: '/thumbnails/theming.png'
@@ -116,7 +116,7 @@ function App() {
           </h3>
           <div className="lang-switcher">
             {languages.map((lang) => (
-              <div className={`lang ${language === lang ? "active" : ""}`} onClick={() => setLanguage(lang)}>{lang}</div>
+              <div key= {`${lang}-option`} className={`lang ${language === lang ? "active" : ""}`} onClick={() => setLanguage(lang)}>{lang}</div>
             ))}
           </div>
           <p className="cover">
@@ -172,7 +172,7 @@ function App() {
       <div className="projects items-center padding-sides">
         <h4 className="header">{selectedInfo.projects_title}</h4>
         {selectedInfo.projects.map((project) => (
-          <a href={project.link} target="_blank">
+          <a  key= {`${project.title}-link`} href={project.link} target="_blank">
             <article className="project transition" onMouseEnter={() => selectVideo(project.video, project.thumb)} onMouseLeave={() => removeVideo()}>
               <h5 className="language">{project.language}</h5>
               <h3 className="title">{project.title}</h3>
