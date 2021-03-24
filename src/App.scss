@@ -158,6 +158,17 @@ body {
     .app {
       .info {
         padding-left: 10vw;
+        .styling {
+          .video-thumb {
+            width: 33vw;
+            max-width: fit-content;
+            padding-left: 3rem;
+          }
+          video {
+            width: 36vw;
+            max-width: fit-content;
+          }
+        }
       }
       .projects {
         right: 10vw;
