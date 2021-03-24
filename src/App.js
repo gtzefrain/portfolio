@@ -7,9 +7,9 @@ function App() {
   let info = {
     EN: {
       introduction: "Hello! I'm Efraín Gutiérrez",
-      cover: "I'm a Front End Engineer with a passion for design. I currently work in consulting for American clients. I mostly work on front end but I also got knowledge on backend, devops, etc; I love React and CSS. I like to work on web experiences that impact the user. ",
+      cover: "I'm a Front End Engineer with a passion for design. I currently work in consulting for American clients. I mostly work on front end but I also got knowledge on backend, devops, etc; I love React and CSS. I love to work on web experiences that impact the user. ",
       cover_cta: 'contact me!',
-      cv_cta: 'Check my CV!',
+      cv_cta: 'Check my CV',
       or: 'or ',
       projects_title: 'Projects',
       projects: [{
@@ -46,7 +46,7 @@ function App() {
     },
     ES: {
       introduction: 'Hola! Soy Efraín Gutiérrez',
-      cover: 'Soy un Front End Engineer con una pasión por el diseño. Actualmente trabajo como consultor para clientes americanos. Mayoritariamente hago front-end development pero también tengo conocimientos de backend, devops y demás; soy fan de React y CSS. Me gusta trabajar con experiencias web que impacten a los usuarios.',
+      cover: 'Soy un Front End Engineer con una pasión por el diseño. Actualmente trabajo como consultor para clientes americanos. Mayoritariamente hago front-end development pero también tengo conocimientos de backend, devops y demás; soy fan de React y CSS. Me encanta trabajar con experiencias web que impacten a los usuarios.',
       cover_cta: 'contactame!',
       cv_cta: 'Revisa mi CV',
       or: 'o ',
@@ -54,7 +54,7 @@ function App() {
       projects: [{
         language: 'Javascript',
         title: 'Plastic Lover',
-        description: 'Sitio promocional para lanzamiento de proyecto musical. Animaciones con JS y CSS',
+        description: 'Sitio promocional para lanzamiento de proyecto músical. Animaciones con JS y CSS',
         // link: 'http://www.plasticlover.com.mx/'
         link: 'https://test-plastic-ep.herokuapp.com/',
         video: '/videos/plastic_video.mp4',
@@ -62,14 +62,14 @@ function App() {
       }, {
         language: 'React',
         title: '8x8 Rebranding FE',
-        description: 'Colaborador en la implementacion de diseño del rebranding del sitio de ventas de 8x8',
+        description: 'Colaborador en la implementación de diseño del rebranding del sitio de ventas de 8x8',
         link: 'https://8x8.com/',
         video: '/videos/8x8.mp4',
         thumb: '/thumbnails/8x8.png'
       }, {
         language: 'Javascript',
         title: 'Dynamic Theme',
-        description: 'Prueba de Concepto para cambio dinamico de temas usando Angular Material',
+        description: 'Prueba de Concepto para cambio dinámico de temas usando Angular Material',
         link: 'https://material-theming.herokuapp.com/',
         video: '/videos/theming.mp4',
         thumb: '/thumbnails/theming.png'
